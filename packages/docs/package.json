@@ -1,0 +1,27 @@
+{
+  "name": "docs",
+  "private": true,
+  "scripts": {
+    "prebuild": "mkdirp ./build/",
+    "build": "yarn prebuild && yarn build:api && yarn build:readme && yarn build:readme-lib",
+    "watch": "watch 'yarn build:readme' ./src",
+    "build:api": "yarn node ./scripts/build-api.js",
+    "build:readme": "yarn node ./scripts/build-readme.js",
+    "build:readme-lib": "yarn node ./scripts/build-readme-lib.js",
+    "clean": "rimraf ./build/"
+  },
+  "dependencies": {
+    "jsdoc-to-markdown": "^7.1.1",
+    "mkabs": "^1.2.4",
+    "mkast": "^1.2.12",
+    "mkdoc": "^1.0.49",
+    "mklevel": "^1.0.3",
+    "mkout": "^1.0.39",
+    "mkpi": "^1.1.6"
+  },
+  "devDependencies": {
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.2",
+    "watch": "^1.0.2"
+  }
+}

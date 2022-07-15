@@ -1,0 +1,14 @@
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+node_modules
+.env.local
+packages/lib/dist/
+packages/lib/LICENSE
+packages/lib/README.md
+packages/lib/package.tgz
+packages/docs/build/

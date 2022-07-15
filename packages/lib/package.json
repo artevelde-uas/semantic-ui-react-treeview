@@ -1,0 +1,52 @@
+{
+  "name": "semantic-ui-react-treeview",
+  "description": "Tree View for Semantic UI React",
+  "keywords": [
+    "react",
+    "semantic-ui",
+    "treeview"
+  ],
+  "version": "1.0.1-beta",
+  "author": "Renaat De Muynck <renaat.demuynck@arteveldehs.be>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artevelde-uas/semantic-ui-react-treeview.git",
+    "directory": "packages/lib"
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "rollup --config",
+    "watch": "rollup --config --watch",
+    "prepack": "yarn build && yarn build-docs && yarn copy-readme && yarn copy-license",
+    "postpack": "rimraf README.md LICENSE",
+    "build-docs": "yarn workspace docs build",
+    "copy-readme": "cpy readme-lib.md ../../lib/ --cwd=../docs/build/ && mve readme-lib.md README.md",
+    "copy-license": "cpy LICENSE packages/lib/ --cwd=../../",
+    "clean": "rimraf ./dist/ README.md LICENSE package.tgz"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "semantic-ui-react": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "cpy-cli": "^4.0.0",
+    "mve": "^0.1.2",
+    "postcss-preset-env": "^7.4.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.68.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
+}
