@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Checkbox } from 'semantic-ui-react';
 
 import styles from './index.module.css';
@@ -16,7 +15,34 @@ export default ({
     data: initialData = [],
     ...props
 }) => {
-    const [data, setData] = useState(initialData);
+    const [data, setData] = useState([]);
+    const [itemRefs, setItemRefs] = useState(new Map());
+
+    useEffect(() => {
+        function processItems(items = [], parent = null) {
+            return items.map(({ name, children, ...props }) => {
+                const item = {
+                    ...props,
+                    name,
+                    parent
+                };
+
+                // Recursively process the child items if present
+                if (Array.isArray(children)) {
+                    item.children = processItems(children, item);
+                }
+
+                // Store a reference to the item
+                itemRefs.set(name, item);
+
+                return item;
+            });
+        }
+
+        const data = processItems(initialData);
+
+        setData(data);
+    }, initialData);
 
     const ItemList = ({ items }) => (
         <ul className={styles.list}>
