@@ -4,57 +4,57 @@ import { TreeView } from 'semantic-ui-react-treeview';
 
 
 const data = [{
-    content: 'Item 1',
-    name: '1',
+    label: 'Item 1',
+    key: '1',
     children: [{
-        content: 'Item 1.1',
-        name: '1.1',
+        label: 'Item 1.1',
+        key: '1.1',
         children: [{
-            content: 'Item 1.1.1',
-            name: '1.1.1',
+            label: 'Item 1.1.1',
+            key: '1.1.1',
             checked: true
         }, {
-            content: 'Item 1.1.4',
-            name: '1.1.4'
+            label: 'Item 1.1.2',
+            key: '1.1.2'
         }, {
-            content: 'Item 1.1.3',
-            name: '1.1.3',
+            label: 'Item 1.1.3',
+            key: '1.1.3',
             checked: true
         }, {
-            content: 'Item 1.1.2',
-            name: '1.1.2'
+            label: 'Item 1.1.4',
+            key: '1.1.4'
         }]
     }, {
-        content: 'Item 1.2',
-        name: '1.2',
+        label: 'Item 1.2',
+        key: '1.2',
         children: [{
-            content: 'Item 1.2.1',
-            name: '1.2.1',
+            label: 'Item 1.2.1',
+            key: '1.2.1',
             children: [{
-                content: 'Item 1.2.1.1',
-                name: '1.2.1.1',
+                label: 'Item 1.2.1.1',
+                key: '1.2.1.1'
             }, {
-                content: 'Item 1.2.1.2',
-                name: '1.2.1.2',
+                label: 'Item 1.2.1.2',
+                key: '1.2.1.2'
             }]
         }, {
-            content: 'Item 1.2.2',
-            name: '1.2.2',
+            label: 'Item 1.2.2',
+            key: '1.2.2',
             checked: true
         }, {
-            content: 'Item 1.2.3',
-            name: '1.2.3',
+            label: 'Item 1.2.3',
+            key: '1.2.3'
         }]
     }]
 }, {
-    content: 'Item 2',
-    name: '2',
+    label: 'Item 2',
+    key: '2',
     children: [{
-        content: 'Item 2.1',
-        name: '2.1',
+        label: 'Item 2.1',
+        key: '2.1'
     }, {
-        content: 'Item 2.2',
-        name: '2.2',
+        label: 'Item 2.2',
+        key: '2.2'
     }]
 }];
 
@@ -107,6 +107,7 @@ const TreeViewExamples = () => (
                     <TreeView
                         //...
                         data={data}
+                        value='1.1.1,1.1.3,1.2.2'
                     />
                 </Item.Description>
             </Item.Content>

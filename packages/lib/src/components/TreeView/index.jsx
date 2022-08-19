@@ -24,10 +24,10 @@ export default ({
     }, initialData);
 
     function processItems(items = [], parent = null) {
-        return items.map(({ name, children, ...props }) => {
+        return items.map(({ key, children, ...props }) => {
             const item = {
                 ...props,
-                name,
+                key,
                 parent
             };
 
@@ -38,7 +38,7 @@ export default ({
             }
 
             // Store a reference to the item
-            itemRefs.set(name, item);
+            itemRefs.set(key, item);
 
             return item;
         });
@@ -99,10 +99,10 @@ export default ({
                     className={styles.checkbox}
                     checked={item.checked}
                     indeterminate={item.indeterminate}
-                    name={item.name}
+                    name={item.key}
                     onClick={handleClick}
                 />
-                {item.content}
+                {item.label}
             </label>
             {item.children && (
                 <ItemList items={item.children} />
