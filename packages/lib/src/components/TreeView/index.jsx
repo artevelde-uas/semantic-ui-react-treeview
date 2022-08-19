@@ -35,6 +35,7 @@ export default ({
             // Recursively process the child items if present
             if (Array.isArray(children)) {
                 item.children = processItems(children, item);
+                setItemState(item);
             }
 
             // Store a reference to the item
@@ -44,18 +45,21 @@ export default ({
         });
     }
 
-    function setParentStates({ parent }) {
-        if (parent === null) return;
-
-        const siblings = parent.children;
+    function setItemState(item) {
+        const siblings = item.children;
         const checkedCount = siblings.reduce(
             (count, { checked }) => (count + (checked ? 1 : 0)), 0
         );
         const hasIndeterminate = siblings.some(item => item.indeterminate);
 
-        parent.checked = checkedCount === siblings.length;
-        parent.indeterminate = hasIndeterminate || (0 < checkedCount && checkedCount < siblings.length);
+        item.checked = checkedCount === siblings.length;
+        item.indeterminate = hasIndeterminate || (0 < checkedCount && checkedCount < siblings.length);
+    }
 
+    function setParentStates({ parent }) {
+        if (parent === null) return;
+
+        setItemState(parent);
         setParentStates(parent);
     }
 
