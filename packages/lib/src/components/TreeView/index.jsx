@@ -24,6 +24,8 @@ export default ({
     const [itemRefs, setItemRefs] = useState(new Map());
     const hiddenInputRef = useRef();
 
+    //#region Effects
+
     useEffect(() => {
         const data = processItems(initialData);
 
@@ -41,6 +43,10 @@ export default ({
 
         hiddenInputRef.current.dispatchEvent(event);
     }, [value]);
+
+    //#endregion
+
+    //#region Functions
 
     function processItems(items = [], parent = null) {
         return items.map(({ key, children, ...props }) => {
@@ -106,6 +112,10 @@ export default ({
         });
     }
 
+    //#endregion
+
+    //#region Event handlers
+
     function handleChange(event, { checked, children }) {
         const key = event.target.parentElement.dataset.key;
         const item = itemRefs.get(key);
@@ -133,6 +143,10 @@ export default ({
         }
     }
 
+    //#endregion
+
+    //#region Components
+
     const ItemList = ({ items }) => (
         <ul className={styles.list}>
             {items.map((item, index) => (
@@ -158,6 +172,8 @@ export default ({
             )}
         </li>
     );
+
+    //#endregion
 
     return (
         <div
