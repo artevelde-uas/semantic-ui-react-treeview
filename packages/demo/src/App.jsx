@@ -3,6 +3,62 @@ import { Tab, Container, Header, Item, Form } from 'semantic-ui-react';
 import { TreeView } from 'semantic-ui-react-treeview';
 
 
+const data = [{
+    content: 'Item 1',
+    name: '1',
+    children: [{
+        content: 'Item 1.1',
+        name: '1.1',
+        children: [{
+            content: 'Item 1.1.1',
+            name: '1.1.1',
+            checked: true
+        }, {
+            content: 'Item 1.1.4',
+            name: '1.1.4'
+        }, {
+            content: 'Item 1.1.3',
+            name: '1.1.3',
+            checked: true
+        }, {
+            content: 'Item 1.1.2',
+            name: '1.1.2'
+        }]
+    }, {
+        content: 'Item 1.2',
+        name: '1.2',
+        children: [{
+            content: 'Item 1.2.1',
+            name: '1.2.1',
+            children: [{
+                content: 'Item 1.2.1.1',
+                name: '1.2.1.1',
+            }, {
+                content: 'Item 1.2.1.2',
+                name: '1.2.1.2',
+            }]
+        }, {
+            content: 'Item 1.2.2',
+            name: '1.2.2',
+            checked: true
+        }, {
+            content: 'Item 1.2.3',
+            name: '1.2.3',
+        }]
+    }]
+}, {
+    content: 'Item 2',
+    name: '2',
+    children: [{
+        content: 'Item 2.1',
+        name: '2.1',
+    }, {
+        content: 'Item 2.2',
+        name: '2.2',
+    }]
+}];
+
+
 const SubmitForm = () => {
     const [value, setValue] = useState('');
     const [submittedValue, setSubmittedValue] = useState('');
@@ -21,12 +77,12 @@ const SubmitForm = () => {
     return (
         <React.Fragment>
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <TreeView
-                        onChange={handleChange}
-                    />
-                    <Form.Button type='submit' content='Submit' />
-                </Form.Group>
+                <TreeView
+                    onChange={handleChange}
+                    data={data}
+                />
+                <br />
+                <Form.Button type='submit' content='Submit' />
             </Form>
             <br />
             <strong>onChange:</strong>
@@ -50,6 +106,7 @@ const TreeViewExamples = () => (
                 <Item.Description>
                     <TreeView
                         //...
+                        data={data}
                     />
                 </Item.Description>
             </Item.Content>
