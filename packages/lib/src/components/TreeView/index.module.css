@@ -11,9 +11,10 @@
   & :global(.ui.checkbox).checkbox {
     vertical-align: middle;
     top: -.1em;
+    margin-right: calc(var(--size) - 17px);
 
     &:global(.fitted) > label {
-      padding-right: var(--size) !important;
+      padding-left: 0;
     }
   }
 
