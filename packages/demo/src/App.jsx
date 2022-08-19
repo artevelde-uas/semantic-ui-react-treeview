@@ -60,11 +60,11 @@ const SubmitForm = () => {
     const [value, setValue] = useState('');
     const [submittedValue, setSubmittedValue] = useState('');
 
-    function handleChange(event) {
+    function handleChange(event, value) {
 
         console.log(event);
 
-        setValue(event.target.value);
+        setValue(value);
     }
 
     function handleSubmit() {
@@ -77,6 +77,7 @@ const SubmitForm = () => {
                 <TreeView
                     onChange={handleChange}
                     data={data}
+                    value='1.1.1,1.1.3,1.2.2'
                 />
                 <br />
                 <Form.Button type='submit' content='Submit' />

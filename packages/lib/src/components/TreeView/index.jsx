@@ -16,14 +16,21 @@ export default ({
     ...props
 }) => {
     const [data, setData] = useState([]);
-    const [keys, setKeys] = useState(new Set(initialValue.split(',')));
+    const [value, setValue] = useState(initialValue);
+    const [keys, setKeys] = useState(new Set(value.split(',')));
     const [itemRefs, setItemRefs] = useState(new Map());
 
     useEffect(() => {
         const data = processItems(initialData);
 
         setData(data);
-    }, initialData);
+    }, [initialData, initialValue]);
+
+    useEffect(() => {
+        const value = Array.from(keys).join(',');
+
+        setValue(value);
+    }, [keys]);
 
     function processItems(items = [], parent = null) {
         return items.map(({ key, children, ...props }) => {
@@ -69,9 +76,19 @@ export default ({
         setParentStates(parent);
     }
 
-    function setChildStates({ children, checked }) {
-        if (!Array.isArray(children)) return;
+    function setChildStates({ children, checked, key }) {
+        // Store the leaf item keys
+        if (!Array.isArray(children)) {
+            if (checked) {
+                keys.add(key);
+            } else {
+                keys.delete(key);
+            }
 
+            return;
+        }
+
+        // Set child states
         children.forEach(item => {
             item.checked = checked;
             item.indeterminate = false;
@@ -79,8 +96,9 @@ export default ({
         });
     }
 
-    function handleClick(event, { name, checked }) {
-        const item = itemRefs.get(name);
+    function handleChange(event, { checked, children }) {
+        const key = event.target.parentElement.dataset.key;
+        const item = itemRefs.get(key);
 
         item.checked = checked;
         item.indeterminate = false;
@@ -89,6 +107,7 @@ export default ({
         setParentStates(item);
 
         setItemRefs(new Map(itemRefs));
+        setKeys(new Set(keys));
     }
 
     const ItemList = ({ items }) => (
@@ -106,8 +125,8 @@ export default ({
                     className={styles.checkbox}
                     checked={item.checked}
                     indeterminate={item.indeterminate}
-                    name={item.key}
-                    onClick={handleClick}
+                    data-key={item.key}
+                    onChange={handleChange}
                 />
                 {item.label}
             </label>
