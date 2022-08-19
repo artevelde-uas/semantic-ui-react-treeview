@@ -12,9 +12,11 @@ import styles from './index.module.css';
  */
 export default ({
     data: initialData = [],
+    value: initialValue = '',
     ...props
 }) => {
     const [data, setData] = useState([]);
+    const [keys, setKeys] = useState(new Set(initialValue.split(',')));
     const [itemRefs, setItemRefs] = useState(new Map());
 
     useEffect(() => {
@@ -30,6 +32,11 @@ export default ({
                 key,
                 parent
             };
+
+            // Check items that are in key list
+            if (keys.has(key)) {
+                item.checked = true;
+            }
 
             // Recursively process the child items if present
             if (Array.isArray(children)) {

@@ -11,15 +11,13 @@ const data = [{
         key: '1.1',
         children: [{
             label: 'Item 1.1.1',
-            key: '1.1.1',
-            checked: true
+            key: '1.1.1'
         }, {
             label: 'Item 1.1.2',
             key: '1.1.2'
         }, {
             label: 'Item 1.1.3',
-            key: '1.1.3',
-            checked: true
+            key: '1.1.3'
         }, {
             label: 'Item 1.1.4',
             key: '1.1.4'
@@ -39,8 +37,7 @@ const data = [{
             }]
         }, {
             label: 'Item 1.2.2',
-            key: '1.2.2',
-            checked: true
+            key: '1.2.2'
         }, {
             label: 'Item 1.2.3',
             key: '1.2.3'
