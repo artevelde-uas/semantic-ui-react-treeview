@@ -116,7 +116,7 @@ export default ({
 
     //#region Event handlers
 
-    function handleChange(event, { checked, children }) {
+    function handleChange(event, { checked }) {
         const key = event.target.parentElement.dataset.key;
         const item = itemRefs.get(key);
 
