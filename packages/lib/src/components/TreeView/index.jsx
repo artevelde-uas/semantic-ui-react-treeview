@@ -11,7 +11,6 @@ import styles from './index.module.css';
  * 
  */
 export default ({
-    name,
     data: initialData = [],
     ...props
 }) => {
