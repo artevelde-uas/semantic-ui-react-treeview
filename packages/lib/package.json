@@ -48,5 +48,8 @@
     "rollup": "^2.68.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "dependencies": {
+    "react-use": "^17.4.0"
   }
 }

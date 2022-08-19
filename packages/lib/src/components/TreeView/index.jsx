@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useUpdateEffect } from 'react-use';
 import { Checkbox } from 'semantic-ui-react';
 
 import styles from './index.module.css';
@@ -12,13 +13,16 @@ import styles from './index.module.css';
  */
 export default ({
     data: initialData = [],
+    name,
     value: initialValue = '',
+    onChange,
     ...props
 }) => {
     const [data, setData] = useState([]);
     const [value, setValue] = useState(initialValue);
     const [keys, setKeys] = useState(new Set(value.split(',')));
     const [itemRefs, setItemRefs] = useState(new Map());
+    const hiddenInputRef = useRef();
 
     useEffect(() => {
         const data = processItems(initialData);
@@ -31,6 +35,12 @@ export default ({
 
         setValue(value);
     }, [keys]);
+
+    useUpdateEffect(() => {
+        const event = new Event('input', { bubbles: true });
+
+        hiddenInputRef.current.dispatchEvent(event);
+    }, [value]);
 
     function processItems(items = [], parent = null) {
         return items.map(({ key, children, ...props }) => {
@@ -108,6 +118,19 @@ export default ({
 
         setItemRefs(new Map(itemRefs));
         setKeys(new Set(keys));
+
+        event.stopPropagation();
+    }
+
+    function handleHiddenInput(event) {
+        if (onChange) {
+            // Change synthetic event type
+            event._reactName = 'onChange';
+            event.type = 'change';
+
+            // Fire the change event
+            onChange(event, value);
+        }
     }
 
     const ItemList = ({ items }) => (
@@ -142,6 +165,13 @@ export default ({
             className={styles.treeview}
         >
             <ItemList items={data} />
+            <input
+                type='hidden'
+                name={name}
+                value={value}
+                ref={hiddenInputRef}
+                onInput={handleHiddenInput}
+            />
         </div>
     );
 };

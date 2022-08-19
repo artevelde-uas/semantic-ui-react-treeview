@@ -62,7 +62,7 @@ const SubmitForm = () => {
 
     function handleChange(event, value) {
 
-        console.log(event);
+        console.log(event, value);
 
         setValue(value);
     }
