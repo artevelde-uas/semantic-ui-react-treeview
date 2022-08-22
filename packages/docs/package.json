@@ -8,7 +8,7 @@
     "build:api": "yarn node ./scripts/build-api.js",
     "build:readme": "yarn node ./scripts/build-readme.js",
     "build:readme-lib": "yarn node ./scripts/build-readme-lib.js",
-    "clean": "rimraf ./build/"
+    "clean": "rimraf ./build/ ../../README.md"
   },
   "dependencies": {
     "jsdoc-to-markdown": "^7.1.1",
