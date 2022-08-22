@@ -61,9 +61,6 @@ const SubmitForm = () => {
     const [submittedValue, setSubmittedValue] = useState('');
 
     function handleChange(event, value) {
-
-        console.log(event, value);
-
         setValue(value);
     }
 
