@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useUpdateEffect } from 'react-use';
 import { Checkbox } from 'semantic-ui-react';
 
