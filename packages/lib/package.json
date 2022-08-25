@@ -6,7 +6,7 @@
     "semantic-ui",
     "treeview"
   ],
-  "version": "1.0.1-beta",
+  "version": "0.1.0",
   "author": "Renaat De Muynck <renaat.demuynck@arteveldehs.be>",
   "license": "ISC",
   "repository": {
