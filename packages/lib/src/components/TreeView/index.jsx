@@ -21,7 +21,7 @@ export default ({
     const [data, setData] = useState([]);
     const [value, setValue] = useState(initialValue);
     const [keys, setKeys] = useState(new Set(value.split(',')));
-    const [itemRefs, setItemRefs] = useState(new Map());
+    const [itemMap, setItemRefs] = useState(new Map());
     const hiddenInputRef = useRef();
 
     //#region Effects
@@ -68,7 +68,7 @@ export default ({
             }
 
             // Store a reference to the item
-            itemRefs.set(key, item);
+            itemMap.set(key, item);
 
             return item;
         });
@@ -118,7 +118,7 @@ export default ({
 
     function handleChange(event, { checked }) {
         const key = event.target.parentElement.dataset.key;
-        const item = itemRefs.get(key);
+        const item = itemMap.get(key);
 
         item.checked = checked;
         item.indeterminate = false;
@@ -126,7 +126,7 @@ export default ({
         setChildStates(item);
         setParentStates(item);
 
-        setItemRefs(new Map(itemRefs));
+        setItemRefs(new Map(itemMap));
         setKeys(new Set(keys));
 
         event.stopPropagation();
