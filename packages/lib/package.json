@@ -6,7 +6,7 @@
     "semantic-ui",
     "treeview"
   ],
-  "version": "1.0.1-beta",
+  "version": "0.1.0",
   "author": "Renaat De Muynck <renaat.demuynck@arteveldehs.be>",
   "license": "ISC",
   "repository": {
@@ -48,5 +48,8 @@
     "rollup": "^2.68.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "dependencies": {
+    "react-use": "^17.4.0"
   }
 }

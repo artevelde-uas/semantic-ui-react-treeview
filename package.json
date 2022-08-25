@@ -14,7 +14,7 @@
   "scripts": {
     "start": "run-p watch start:demo",
     "start:demo": "yarn workspace demo start",
-    "build": "yarn workspace semantic-ui-react-treeview build",
+    "build": "yarn workspace semantic-ui-react-treeview build && yarn workspace docs build",
     "watch": "yarn workspace semantic-ui-react-treeview watch",
     "test": "yarn workspace demo test",
     "clean": "yarn workspaces foreach run clean"

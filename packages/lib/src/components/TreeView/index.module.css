@@ -1,2 +1,38 @@
 .treeview {
+  --size: 1.75em;
+  padding: 0.67857143em 1em;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.28571429rem;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  font-size: 1em;
+  user-select: none;
+
+  & :global(.ui.checkbox).checkbox {
+    vertical-align: middle;
+    top: -.1em;
+    margin-right: calc(var(--size) - 17px);
+
+    &:global(.fitted) > label {
+      padding-left: 0;
+    }
+  }
+
+  & ul.list {
+    margin: 0;
+    padding-left: var(--size);
+
+    & > li {
+      display: block;
+
+      & > label {
+        line-height: var(--size);
+        cursor: pointer;
+      }
+    }
+  }
+
+  & > ul.list {
+    padding-left: 0;
+  }
 }
