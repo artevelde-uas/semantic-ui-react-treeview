@@ -18,9 +18,10 @@ export default ({
     onChange,
     ...props
 }) => {
+    const split = value => value === '' ? [] : value.split(',');
     const [data, setData] = useState([]);
     const [value, setValue] = useState(initialValue);
-    const [keys, setKeys] = useState(new Set(value.split(',')));
+    const [keys, setKeys] = useState(new Set(split(value)));
     const [itemMap, setItemRefs] = useState(new Map());
     const hiddenInputRef = useRef();
 
