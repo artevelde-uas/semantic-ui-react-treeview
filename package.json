@@ -16,6 +16,7 @@
     "start:demo": "yarn workspace demo start",
     "build": "yarn workspace semantic-ui-react-treeview build && yarn workspace docs build",
     "watch": "yarn workspace semantic-ui-react-treeview watch",
+    "publish": "yarn workspace semantic-ui-react-treeview npm publish",
     "test": "yarn workspace demo test",
     "clean": "yarn workspaces foreach run clean"
   },
