@@ -21,17 +21,22 @@ export default ({
     const split = value => value === '' ? [] : value.split(',');
     const [data, setData] = useState([]);
     const [value, setValue] = useState(initialValue);
-    const [keys, setKeys] = useState(new Set(split(value)));
+    const [keys, setKeys] = useState(new Set(split(initialValue)));
     const [itemMap, setItemRefs] = useState(new Map());
     const hiddenInputRef = useRef();
 
     //#region Effects
 
     useEffect(() => {
+        setValue(initialValue);
+        setKeys(new Set(split(initialValue)));
+    }, [initialValue]);
+
+    useEffect(() => {
         const data = processItems(initialData);
 
         setData(data);
-    }, [initialData, initialValue]);
+    }, [initialData, keys]);
 
     useEffect(() => {
         const value = Array.from(keys).join(',');
