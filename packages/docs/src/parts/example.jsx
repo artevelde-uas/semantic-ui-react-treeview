@@ -8,23 +8,23 @@ export default () => (
             onChange={handleChange}
             data={[{
                 label: 'Item 1',
-                key: '1',
+                id: '1',
                 children: [{
                     label: 'Item 1.1',
-                    key: '1.1'
+                    id: '1.1'
                 }, {
                     label: 'Item 1.2',
-                    key: '1.2'
+                    id: '1.2'
                 }]
             }, {
                 label: 'Item 2',
-                key: '2',
+                id: '2',
                 children: [{
                     label: 'Item 2.1',
-                    key: '2.1'
+                    id: '2.1'
                 }, {
                     label: 'Item 2.2',
-                    key: '2.2'
+                    id: '2.2'
                 }]
             }]}
         />
