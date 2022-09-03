@@ -21,7 +21,7 @@ export default ({
     const split = value => value === '' ? [] : value.split(',');
     const [data, setData] = useState([]);
     const [value, setValue] = useState(initialValue);
-    const [keys, setKeys] = useState(new Set(split(initialValue)));
+    const [ids, setIds] = useState(new Set(split(initialValue)));
     const [itemMap, setItemRefs] = useState(new Map());
     const hiddenInputRef = useRef();
 
@@ -29,20 +29,20 @@ export default ({
 
     useEffect(() => {
         setValue(initialValue);
-        setKeys(new Set(split(initialValue)));
+        setIds(new Set(split(initialValue)));
     }, [initialValue]);
 
     useEffect(() => {
         const data = processItems(initialData);
 
         setData(data);
-    }, [initialData, keys]);
+    }, [initialData, ids]);
 
     useEffect(() => {
-        const value = Array.from(keys).join(',');
+        const value = Array.from(ids).join(',');
 
         setValue(value);
-    }, [keys]);
+    }, [ids]);
 
     useUpdateEffect(() => {
         const event = new Event('input', { bubbles: true });
@@ -55,15 +55,15 @@ export default ({
     //#region Functions
 
     function processItems(items = [], parent = null) {
-        return items.map(({ key, children, ...props }) => {
+        return items.map(({ id, children, ...props }) => {
             const item = {
                 ...props,
-                key,
+                id,
                 parent
             };
 
-            // Check items that are in key list
-            if (keys.has(key)) {
+            // Check items that are in id list
+            if (ids.has(id)) {
                 item.checked = true;
             }
 
@@ -74,7 +74,7 @@ export default ({
             }
 
             // Store a reference to the item
-            itemMap.set(key, item);
+            itemMap.set(id, item);
 
             return item;
         });
@@ -98,13 +98,13 @@ export default ({
         setParentStates(parent);
     }
 
-    function setChildStates({ children, checked, key }) {
-        // Store the leaf item keys
+    function setChildStates({ children, checked, id }) {
+        // Store the leaf item ids
         if (!Array.isArray(children)) {
             if (checked) {
-                keys.add(key);
+                ids.add(id);
             } else {
-                keys.delete(key);
+                ids.delete(id);
             }
 
             return;
@@ -123,8 +123,8 @@ export default ({
     //#region Event handlers
 
     function handleChange(event, { checked }) {
-        const key = event.target.parentElement.dataset.key;
-        const item = itemMap.get(key);
+        const id = event.target.parentElement.dataset.id;
+        const item = itemMap.get(id);
 
         item.checked = checked;
         item.indeterminate = false;
@@ -133,7 +133,7 @@ export default ({
         setParentStates(item);
 
         setItemRefs(new Map(itemMap));
-        setKeys(new Set(keys));
+        setIds(new Set(ids));
 
         event.stopPropagation();
     }
@@ -168,7 +168,7 @@ export default ({
                     className={styles.checkbox}
                     checked={item.checked}
                     indeterminate={item.indeterminate}
-                    data-key={item.key}
+                    data-id={item.id}
                     onChange={handleChange}
                 />
                 {item.label}
